@@ -15,9 +15,18 @@ async function sendRequest(
 }
 
 function App() {
-  const { data } = useSWR("https://example.com/user", fetcher);
-  const { data: data2 } = useSWR("https://example.com/user", fetcher);
-  const { data: data3 } = useSWR("https://example.com/user", fetcher);
+  const { data: data1, isValidating: isValidating1 } = useSWR(
+    "https://example.com/user",
+    fetcher
+  );
+  const { data: data2, isValidating: isValidating2 } = useSWR(
+    "https://example.com/user",
+    fetcher
+  );
+  const { data: data3, isValidating: isValidating3 } = useSWR(
+    "https://example.com/user",
+    fetcher
+  );
 
   const { trigger, isMutating } = useSWRMutation(
     "https://example.com/user",
@@ -26,11 +35,23 @@ function App() {
 
   return (
     <div>
-      <div>data:{data && data.firstName}</div>
-      <div>data2:{data2 && data2.firstName}</div>
-      <div>data3:{data3 && data3.firstName}</div>
+      <div>
+        <span>data:{data1?.firstName}</span>
+        <span>{isValidating1 ? "GET Validating1" : "Done"}</span>
+      </div>
+
+      <div>
+        <span>data2:{data2?.firstName}</span>
+        <span>{isValidating2 ? "GET Validating2" : "Done"}</span>
+      </div>
+
+      <div>
+        <span>data3:{data3?.firstName}</span>
+        <span>{isValidating3 ? "GET Validating3" : "Done"}</span>
+      </div>
+
       <button onClick={() => trigger({ username: "sample" })}>Click me</button>
-      <div>{isMutating ? "Loading..." : "Not loading"}</div>
+      <div>{isMutating ? "POST Mutating..." : "Done"}</div>
     </div>
   );
 }
