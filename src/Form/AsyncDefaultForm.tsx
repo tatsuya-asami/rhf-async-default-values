@@ -5,6 +5,9 @@ export const AsyncDefaultForm = () => {
   const { trigger } = useFetchUserByMutation();
   const methods = useForm({
     defaultValues: trigger,
+    // resetOptions: {
+    //   keepValues: true,
+    // },
   });
 
   return (
@@ -15,7 +18,10 @@ export const AsyncDefaultForm = () => {
     >
       <input {...methods.register("firstName")} />
       <input {...methods.register("lastName")} />
-      <button type="submit">Submit</button>
+      <button type="submit">Submit</button>{" "}
+      <button type="button" onClick={() => methods.reset()}>
+        Reset
+      </button>
     </form>
   );
 };

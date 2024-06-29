@@ -1,12 +1,28 @@
 import { useForm } from "react-hook-form";
-import { useFetchUserWithSuspense } from "../api";
+import { useFetchUser } from "../api";
 
-export const SuspenseForm = () => {
-  const { data } = useFetchUserWithSuspense();
+export const PropsForm = () => {
+  const { data } = useFetchUser();
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <PropsFormChildren firstName={data.firstName} lastName={data.lastName} />
+  );
+};
+
+type Props = {
+  firstName: string;
+  lastName: string;
+};
+
+const PropsFormChildren = ({ firstName, lastName }: Props) => {
   const methods = useForm({
     defaultValues: {
-      firstName: data.firstName,
-      lastName: data.lastName,
+      firstName,
+      lastName,
     },
   });
 

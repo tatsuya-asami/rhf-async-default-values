@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import "./App.css";
 import { SuspenseForm } from "./Form/SuspenseForm";
-import { NormalForm } from "./Form/NormalForm";
+import { ValuesForm } from "./Form/ValuesForm";
 import { AsyncDefaultForm } from "./Form/AsyncDefaultForm";
+import { PropsForm } from "./Form/PropsForm";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <SuspenseForm />
       </Suspense>
-      <NormalForm />
+      <ValuesForm />
       <AsyncDefaultForm />
+      <PropsForm />
     </div>
   );
 }

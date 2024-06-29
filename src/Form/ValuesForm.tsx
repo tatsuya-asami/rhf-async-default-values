@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useFetchUser } from "../api";
 
-export const NormalForm = () => {
+export const ValuesForm = () => {
   const { data } = useFetchUser();
   const methods = useForm({
     values: {
@@ -21,7 +21,10 @@ export const NormalForm = () => {
     >
       <input {...methods.register("firstName")} />
       <input {...methods.register("lastName")} />
-      <button type="submit">Submit</button>
+      <button type="submit">Submit</button>{" "}
+      <button type="button" onClick={() => methods.reset()}>
+        Reset
+      </button>
     </form>
   );
 };
