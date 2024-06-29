@@ -21,7 +21,7 @@ export const ValuesForm = () => {
     >
       <input {...methods.register("firstName")} />
       <input {...methods.register("lastName")} />
-      <button type="submit">Submit</button>{" "}
+      <button type="submit">Submit</button>
       <button type="button" onClick={() => methods.reset()}>
         Reset
       </button>
