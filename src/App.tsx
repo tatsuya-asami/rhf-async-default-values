@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import "./App.css";
 import { SuspenseForm } from "./Form/SuspenseForm";
 import { NormalForm } from "./Form/NormalForm";
+import { AsyncDefaultForm } from "./Form/AsyncDefaultForm";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <SuspenseForm />
       </Suspense>
       <NormalForm />
+      <AsyncDefaultForm />
     </div>
   );
 }
