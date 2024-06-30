@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useFetchUserByMutation } from "../api";
-import { FormProps } from "../types";
+import { useFetchUserByMutation } from "../../api";
+import { FormProps } from "../../types";
 
-export const AsyncDefaultForm = ({ outOfForm, description }: FormProps) => {
+export const NoChangeAsyncDefaultForm = ({
+  outOfForm,
+  description,
+}: FormProps) => {
   const { trigger } = useFetchUserByMutation();
   const {
     formState: { isLoading },

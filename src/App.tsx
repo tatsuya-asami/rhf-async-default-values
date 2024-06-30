@@ -1,9 +1,10 @@
 import { Suspense, useState } from "react";
 import "./App.css";
-import { SuspenseForm } from "./Form/SuspenseForm";
+import { NoChangeSuspenseForm } from "./Form/NoChange/NoChangeSuspenseForm";
 import { ValuesForm } from "./Form/ValuesForm";
-import { AsyncDefaultForm } from "./Form/AsyncDefaultForm";
+import { NoChangeAsyncDefaultForm } from "./Form/NoChange/NoChangeAsyncDefaultForm";
 import { PropsForm } from "./Form/PropsForm";
+import { ChangeSuspenseForm } from "./Form/Reactive/ChangeSuspenseForm";
 
 function App() {
   const [outOfForm, setOutOfForm] = useState("outOfForm");
@@ -21,9 +22,22 @@ function App() {
         <div>
           <h2>初期値で使っている値が変わっても変わらない</h2>
           <div>
-            <h3>Async</h3>
-            <AsyncDefaultForm outOfForm={outOfForm} description={description} />
+            <h3>Suspense</h3>
+            <Suspense fallback={<div>Loading...</div>}>
+              <NoChangeSuspenseForm
+                outOfForm={outOfForm}
+                description={description}
+              />
+            </Suspense>
           </div>
+          <div>
+            <h3>Async</h3>
+            <NoChangeAsyncDefaultForm
+              outOfForm={outOfForm}
+              description={description}
+            />
+          </div>
+
           <div>
             <h3>Values</h3>
             <ValuesForm outOfForm={outOfForm} description={description} />
@@ -31,19 +45,25 @@ function App() {
           <div>
             <h3>Props</h3>
             <PropsForm outOfForm={outOfForm} description={description} />
-          </div>
-          <div>
-            <h3>Suspense</h3>
-            <Suspense fallback={<div>Loading...</div>}>
-              <SuspenseForm outOfForm={outOfForm} description={description} />
-            </Suspense>
           </div>
         </div>
         <div>
           <h2>初期値で使っている値が変わるとフォームも変わる</h2>
           <div>
+            <div>
+              <h3>Suspense</h3>
+              <Suspense fallback={<div>Loading...</div>}>
+                <ChangeSuspenseForm
+                  outOfForm={outOfForm}
+                  description={description}
+                />
+              </Suspense>
+            </div>
             <h3>Async</h3>
-            <AsyncDefaultForm outOfForm={outOfForm} description={description} />
+            <NoChangeAsyncDefaultForm
+              outOfForm={outOfForm}
+              description={description}
+            />
           </div>
           <div>
             <h3>Values</h3>
@@ -52,12 +72,6 @@ function App() {
           <div>
             <h3>Props</h3>
             <PropsForm outOfForm={outOfForm} description={description} />
-          </div>
-          <div>
-            <h3>Suspense</h3>
-            <Suspense fallback={<div>Loading...</div>}>
-              <SuspenseForm outOfForm={outOfForm} description={description} />
-            </Suspense>
           </div>
         </div>
       </div>

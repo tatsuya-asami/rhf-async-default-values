@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useFetchUserWithSuspense } from "../api";
-import { FormProps } from "../types";
+import { useFetchUserWithSuspense } from "../../api";
+import { FormProps } from "../../types";
 
-export const SuspenseForm = ({ outOfForm, description }: FormProps) => {
+export const ChangeSuspenseForm = ({ outOfForm, description }: FormProps) => {
   const { data, isValidating } = useFetchUserWithSuspense();
   const methods = useForm({
     values: {
