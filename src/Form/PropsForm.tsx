@@ -3,7 +3,7 @@ import { useFetchUser } from "../api";
 import { FormProps } from "../types";
 
 export const PropsForm = ({ outOfForm, description }: FormProps) => {
-  const { data } = useFetchUser();
+  const { data, isValidating } = useFetchUser();
 
   if (!data) {
     return <div>Loading...</div>;
@@ -11,10 +11,11 @@ export const PropsForm = ({ outOfForm, description }: FormProps) => {
 
   return (
     <PropsFormChildren
-      firstName={data.firstName}
-      lastName={data.lastName}
+      firstName={data?.firstName ?? ""}
+      lastName={data?.lastName ?? ""}
       outOfForm={outOfForm}
       description={description}
+      isValidating={isValidating}
     />
   );
 };
@@ -22,6 +23,7 @@ export const PropsForm = ({ outOfForm, description }: FormProps) => {
 type Props = {
   firstName: string;
   lastName: string;
+  isValidating: boolean;
 };
 
 const PropsFormChildren = ({
@@ -29,9 +31,10 @@ const PropsFormChildren = ({
   lastName,
   outOfForm,
   description,
+  isValidating,
 }: Props & FormProps) => {
   const methods = useForm({
-    defaultValues: {
+    values: {
       firstName,
       lastName,
       description,
@@ -46,9 +49,9 @@ const PropsFormChildren = ({
           console.log(value);
         })}
       >
-        <input {...methods.register("firstName")} />
-        <input {...methods.register("lastName")} />
-        <input {...methods.register("description")} />
+        <input {...methods.register("firstName")} disabled={isValidating} />
+        <input {...methods.register("lastName")} disabled={isValidating} />
+        <input {...methods.register("description")} disabled={isValidating} />
         <button type="submit">Submit</button>
         <button type="button" onClick={() => methods.reset()}>
           Reset
