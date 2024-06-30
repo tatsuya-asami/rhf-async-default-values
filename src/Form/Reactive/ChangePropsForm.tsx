@@ -34,6 +34,11 @@ const PropsFormChildren = ({
   isValidating,
 }: Props & FormProps) => {
   const methods = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      description: "",
+    },
     values: {
       firstName,
       lastName,

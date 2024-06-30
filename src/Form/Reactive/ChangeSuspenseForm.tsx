@@ -5,6 +5,11 @@ import { FormProps } from "../../types";
 export const ChangeSuspenseForm = ({ outOfForm, description }: FormProps) => {
   const { data, isValidating } = useFetchUserWithSuspense();
   const methods = useForm({
+    defaultValues: {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      description,
+    },
     values: {
       firstName: data.firstName,
       lastName: data.lastName,
