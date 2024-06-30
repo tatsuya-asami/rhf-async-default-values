@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useFetchUser } from "../api";
-import { FormProps } from "../types";
+import { useFetchUser } from "../../api";
+import { FormProps } from "../../types";
 
-export const ValuesForm = ({ outOfForm, description }: FormProps) => {
+export const ChangeValuesForm = ({ outOfForm, description }: FormProps) => {
   const { data, isValidating } = useFetchUser();
   const methods = useForm({
     defaultValues: {

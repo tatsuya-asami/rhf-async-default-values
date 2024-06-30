@@ -1,11 +1,12 @@
 import { Suspense, useState } from "react";
 import "./App.css";
 import { NoChangeSuspenseForm } from "./Form/NoChange/NoChangeSuspenseForm";
-import { ValuesForm } from "./Form/ValuesForm";
+import { NoChangeValuesForm } from "./Form/NoChange/NoChangeValuesForm";
 import { NoChangeAsyncDefaultForm } from "./Form/NoChange/NoChangeAsyncDefaultForm";
 import { PropsForm } from "./Form/PropsForm";
 import { ChangeSuspenseForm } from "./Form/Reactive/ChangeSuspenseForm";
 import { ChangeAsyncDefaultForm } from "./Form/Reactive/ChangeAsyncDefaultForm";
+import { ChangeValuesForm } from "./Form/Reactive/ChangeValuesForm";
 
 function App() {
   const [outOfForm, setOutOfForm] = useState("outOfForm");
@@ -27,7 +28,7 @@ function App() {
           maxWidth: "1000px",
         }}
       >
-        <div>
+        <div style={{ border: "1px solid" }}>
           <h2>初期値で使っている値が変わっても変わらない</h2>
           <div>
             <h3>Suspense</h3>
@@ -47,14 +48,14 @@ function App() {
           </div>
           <div>
             <h3>Values</h3>
-            <ValuesForm outOfForm={outOfForm} description={description} />
+            <NoChangeValuesForm />
           </div>
           <div>
             <h3>Props</h3>
             <PropsForm outOfForm={outOfForm} description={description} />
           </div>
         </div>
-        <div>
+        <div style={{ border: "1px solid" }}>
           <h2>初期値で使っている値が変わるとフォームも変わる</h2>
           <div>
             <div>
@@ -71,7 +72,7 @@ function App() {
           </div>
           <div>
             <h3>Values</h3>
-            <ValuesForm outOfForm={outOfForm} description={description} />
+            <ChangeValuesForm outOfForm={outOfForm} description={description} />
           </div>
           <div>
             <h3>Props</h3>
