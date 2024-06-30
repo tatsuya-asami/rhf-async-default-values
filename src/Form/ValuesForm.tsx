@@ -3,7 +3,7 @@ import { useFetchUser } from "../api";
 import { FormProps } from "../types";
 
 export const ValuesForm = ({ outOfForm, description }: FormProps) => {
-  const { data } = useFetchUser();
+  const { data, isValidating } = useFetchUser();
   const methods = useForm({
     defaultValues: {
       firstName: "",
@@ -15,9 +15,6 @@ export const ValuesForm = ({ outOfForm, description }: FormProps) => {
       lastName: data?.lastName,
       description,
     },
-    resetOptions: {
-      keepDirtyValues: true,
-    },
   });
 
   return (
@@ -28,9 +25,9 @@ export const ValuesForm = ({ outOfForm, description }: FormProps) => {
           console.log(value);
         })}
       >
-        <input {...methods.register("firstName")} />
-        <input {...methods.register("lastName")} />
-        <input {...methods.register("description")} />
+        <input {...methods.register("firstName")} disabled={isValidating} />
+        <input {...methods.register("lastName")} disabled={isValidating} />
+        <input {...methods.register("description")} disabled={isValidating} />
         <button type="submit">Submit</button>
         <button type="button" onClick={() => methods.reset()}>
           Reset

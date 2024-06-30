@@ -4,27 +4,31 @@ import { FormProps } from "../types";
 
 export const AsyncDefaultForm = ({ outOfForm, description }: FormProps) => {
   const { trigger } = useFetchUserByMutation();
-  const methods = useForm({
+  const {
+    formState: { isLoading },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm({
     defaultValues: async () => {
       const result = await trigger();
       return { ...result, description };
     },
-    // values: { description },
   });
 
   return (
     <div>
       <div>{outOfForm}</div>
       <form
-        onSubmit={methods.handleSubmit((value) => {
+        onSubmit={handleSubmit((value) => {
           console.log(value);
         })}
       >
-        <input {...methods.register("firstName")} />
-        <input {...methods.register("lastName")} />
-        <input {...methods.register("description")} />
+        <input {...register("firstName")} disabled={isLoading} />
+        <input {...register("lastName")} disabled={isLoading} />
+        <input {...register("description")} disabled={isLoading} />
         <button type="submit">Submit</button>
-        <button type="button" onClick={() => methods.reset()}>
+        <button type="button" onClick={() => reset()}>
           Reset
         </button>
       </form>
