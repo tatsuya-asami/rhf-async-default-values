@@ -15,4 +15,4 @@ export const useFetchUserByMutation = () => {
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-const API_PATH = "https://example.com/user";
+const API_PATH = "http://localhost:3020/user";
