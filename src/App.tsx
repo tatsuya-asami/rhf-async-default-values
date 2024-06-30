@@ -11,10 +11,10 @@ function App() {
   return (
     <div>
       <h1>default values from server</h1>
-      <button onClick={() => setOutOfForm("default values from server")}>
+      <button onClick={() => setOutOfForm("changed setOutOfForm")}>
         set out of form
       </button>
-      <button onClick={() => setDescription("description")}>
+      <button onClick={() => setDescription("changed description")}>
         set description
       </button>
       <div>
