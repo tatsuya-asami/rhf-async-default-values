@@ -3,10 +3,11 @@ import "./App.css";
 import { NoChangeSuspenseForm } from "./Form/NoChange/NoChangeSuspenseForm";
 import { NoChangeValuesForm } from "./Form/NoChange/NoChangeValuesForm";
 import { NoChangeAsyncDefaultForm } from "./Form/NoChange/NoChangeAsyncDefaultForm";
-import { PropsForm } from "./Form/PropsForm";
+import { ChangePropsForm } from "./Form/Reactive/ChangePropsForm";
 import { ChangeSuspenseForm } from "./Form/Reactive/ChangeSuspenseForm";
 import { ChangeAsyncDefaultForm } from "./Form/Reactive/ChangeAsyncDefaultForm";
 import { ChangeValuesForm } from "./Form/Reactive/ChangeValuesForm";
+import { NoChangePropsForm } from "./Form/NoChange/NoChangePropsForm";
 
 function App() {
   const [outOfForm, setOutOfForm] = useState("outOfForm");
@@ -52,7 +53,10 @@ function App() {
           </div>
           <div>
             <h3>Props</h3>
-            <PropsForm outOfForm={outOfForm} description={description} />
+            <NoChangePropsForm
+              outOfForm={outOfForm}
+              description={description}
+            />
           </div>
         </div>
         <div style={{ border: "1px solid" }}>
@@ -76,7 +80,7 @@ function App() {
           </div>
           <div>
             <h3>Props</h3>
-            <PropsForm outOfForm={outOfForm} description={description} />
+            <ChangePropsForm outOfForm={outOfForm} description={description} />
           </div>
         </div>
       </div>
