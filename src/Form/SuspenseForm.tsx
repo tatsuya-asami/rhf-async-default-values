@@ -1,27 +1,33 @@
 import { useForm } from "react-hook-form";
 import { useFetchUserWithSuspense } from "../api";
+import { FormProps } from "../types";
 
-export const SuspenseForm = () => {
+export const SuspenseForm = ({ outOfForm, description }: FormProps) => {
   const { data } = useFetchUserWithSuspense();
   const methods = useForm({
     defaultValues: {
       firstName: data.firstName,
       lastName: data.lastName,
+      description,
     },
   });
 
   return (
-    <form
-      onSubmit={methods.handleSubmit((value) => {
-        console.log(value);
-      })}
-    >
-      <input {...methods.register("firstName")} />
-      <input {...methods.register("lastName")} />
-      <button type="submit">Submit</button>
-      <button type="button" onClick={() => methods.reset()}>
-        Reset
-      </button>
-    </form>
+    <div>
+      <div>{outOfForm}</div>
+      <form
+        onSubmit={methods.handleSubmit((value) => {
+          console.log(value);
+        })}
+      >
+        <input {...methods.register("firstName")} />
+        <input {...methods.register("lastName")} />
+        <input {...methods.register("description")} />
+        <button type="submit">Submit</button>
+        <button type="button" onClick={() => methods.reset()}>
+          Reset
+        </button>
+      </form>
+    </div>
   );
 };

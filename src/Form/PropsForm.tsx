@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useFetchUser } from "../api";
+import { FormProps } from "../types";
 
-export const PropsForm = () => {
+export const PropsForm = ({ outOfForm, description }: FormProps) => {
   const { data } = useFetchUser();
 
   if (!data) {
@@ -9,7 +10,12 @@ export const PropsForm = () => {
   }
 
   return (
-    <PropsFormChildren firstName={data.firstName} lastName={data.lastName} />
+    <PropsFormChildren
+      firstName={data.firstName}
+      lastName={data.lastName}
+      outOfForm={outOfForm}
+      description={description}
+    />
   );
 };
 
@@ -18,26 +24,36 @@ type Props = {
   lastName: string;
 };
 
-const PropsFormChildren = ({ firstName, lastName }: Props) => {
+const PropsFormChildren = ({
+  firstName,
+  lastName,
+  outOfForm,
+  description,
+}: Props & FormProps) => {
   const methods = useForm({
     defaultValues: {
       firstName,
       lastName,
+      description,
     },
   });
 
   return (
-    <form
-      onSubmit={methods.handleSubmit((value) => {
-        console.log(value);
-      })}
-    >
-      <input {...methods.register("firstName")} />
-      <input {...methods.register("lastName")} />
-      <button type="submit">Submit</button>
-      <button type="button" onClick={() => methods.reset()}>
-        Reset
-      </button>
-    </form>
+    <div>
+      <div>{outOfForm}</div>
+      <form
+        onSubmit={methods.handleSubmit((value) => {
+          console.log(value);
+        })}
+      >
+        <input {...methods.register("firstName")} />
+        <input {...methods.register("lastName")} />
+        <input {...methods.register("description")} />
+        <button type="submit">Submit</button>
+        <button type="button" onClick={() => methods.reset()}>
+          Reset
+        </button>
+      </form>
+    </div>
   );
 };
