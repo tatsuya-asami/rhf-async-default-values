@@ -19,7 +19,14 @@ function App() {
       <button onClick={() => setDescription("changed description")}>
         set description
       </button>
-      <div style={{ display: "flex", flexDirection: "row", gap: "1em" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "1em",
+          maxWidth: "1000px",
+        }}
+      >
         <div>
           <h2>初期値で使っている値が変わっても変わらない</h2>
           <div>
@@ -38,7 +45,6 @@ function App() {
               description={description}
             />
           </div>
-
           <div>
             <h3>Values</h3>
             <ValuesForm outOfForm={outOfForm} description={description} />
