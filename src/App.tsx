@@ -5,6 +5,7 @@ import { ValuesForm } from "./Form/ValuesForm";
 import { NoChangeAsyncDefaultForm } from "./Form/NoChange/NoChangeAsyncDefaultForm";
 import { PropsForm } from "./Form/PropsForm";
 import { ChangeSuspenseForm } from "./Form/Reactive/ChangeSuspenseForm";
+import { ChangeAsyncDefaultForm } from "./Form/Reactive/ChangeAsyncDefaultForm";
 
 function App() {
   const [outOfForm, setOutOfForm] = useState("outOfForm");
@@ -60,10 +61,7 @@ function App() {
               </Suspense>
             </div>
             <h3>Async</h3>
-            <NoChangeAsyncDefaultForm
-              outOfForm={outOfForm}
-              description={description}
-            />
+            <ChangeAsyncDefaultForm />
           </div>
           <div>
             <h3>Values</h3>
