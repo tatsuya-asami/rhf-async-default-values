@@ -17,23 +17,49 @@ function App() {
       <button onClick={() => setDescription("changed description")}>
         set description
       </button>
-      <div>
-        <h2>Async</h2>
-        <AsyncDefaultForm outOfForm={outOfForm} description={description} />
-      </div>
-      <div>
-        <h2>Values</h2>
-        <ValuesForm outOfForm={outOfForm} description={description} />
-      </div>
-      <div>
-        <h2>Props</h2>
-        <PropsForm outOfForm={outOfForm} description={description} />
-      </div>
-      <div>
-        <h2>Suspense</h2>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SuspenseForm outOfForm={outOfForm} description={description} />
-        </Suspense>
+      <div style={{ display: "flex", flexDirection: "row", gap: "1em" }}>
+        <div>
+          <h2>初期値で使っている値が変わっても変わらない</h2>
+          <div>
+            <h3>Async</h3>
+            <AsyncDefaultForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Values</h3>
+            <ValuesForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Props</h3>
+            <PropsForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Suspense</h3>
+            <Suspense fallback={<div>Loading...</div>}>
+              <SuspenseForm outOfForm={outOfForm} description={description} />
+            </Suspense>
+          </div>
+        </div>
+        <div>
+          <h2>初期値で使っている値が変わるとフォームも変わる</h2>
+          <div>
+            <h3>Async</h3>
+            <AsyncDefaultForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Values</h3>
+            <ValuesForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Props</h3>
+            <PropsForm outOfForm={outOfForm} description={description} />
+          </div>
+          <div>
+            <h3>Suspense</h3>
+            <Suspense fallback={<div>Loading...</div>}>
+              <SuspenseForm outOfForm={outOfForm} description={description} />
+            </Suspense>
+          </div>
+        </div>
       </div>
     </div>
   );
